@@ -13,13 +13,18 @@ The purpose of this sample is just to demonstrate how to use the BLE Mini in Cen
  4. Once the connection is established, enable the button press notification and wait for the events
 
 **Screenshots**
+![enter image description here][8]
 
+![enter image description here][9]
 
+![enter image description here][10]
 
 **Demo Video**
 
 https://www.youtube.com/watch?v=p51XCAk1nNU
  
+
+
   [1]: http://www.ti.com/ww/en/wireless_connectivity/sensortag/index.shtml
   [2]: http://www.spark.io
   [3]: http://redbearlab.com/blemini/
@@ -27,3 +32,6 @@ https://www.youtube.com/watch?v=p51XCAk1nNU
   [5]: http://redbearlab.com/blemini/
   [6]: https://github.com/RedBearLab/BLE_HCI/tree/master/python/SensorTag
   [7]: http://www.ti.com/ww/en/wireless_connectivity/sensortag/index.shtml
+  [8]: https://raw.githubusercontent.com/krvarma/BLEMini_SparkCore/master/1.JPG
+  [9]: https://raw.githubusercontent.com/krvarma/BLEMini_SparkCore/master/2.JPG
+  [10]: https://raw.githubusercontent.com/krvarma/BLEMini_SparkCore/master/3.JPG
