@@ -1,0 +1,79 @@
+<html>
+<body>
+    <h1>Spark Core and SensorTag Demo</h1>
+    <table>
+        <tr>
+            <td>
+                <span id="eventinfo"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span id="tstamp"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button onclick="start()">Connect to Spark Core</button>
+            </td>
+        </tr>
+    </table>
+    
+    <table>
+        <tr>
+            <td colspan="2">
+                <br /><hr /><br />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span id="leftbtn"><img src="bup.png" /></span><br>
+            </td>
+            <td>
+                <span id="rightbtn"><img src="bup.png" /></span><br>
+            </td>
+        </tr>        
+    </table>
+    
+    <script type="text/javascript">
+    function start() {
+
+        document.getElementById("eventinfo").innerHTML = "Waiting for data...";
+        var deviceID = "<<deviceid>>";
+        var accessToken = "<<accesstoken>>";
+        var eventSource = new EventSource("https://api.spark.io/v1/devices/" + deviceID + "/events/?access_token=" + accessToken);
+
+        eventSource.addEventListener('open', function(e) {
+            console.log("Opened!"); },false);
+
+        eventSource.addEventListener('error', function(e) {
+            console.log("Errored!"); },false);
+
+        eventSource.addEventListener('stag', function(e) {
+            var parsedData = JSON.parse(e.data);
+            var tempSpan = document.getElementById("eventinfo");
+            var tsSpan = document.getElementById("tstamp");
+
+            tempSpan.innerHTML = "Core: " + parsedData.coreid + " Data: " + parsedData.data;
+            tempSpan.style.fontSize = "28px";
+
+            tsSpan.innerHTML = "At timestamp " + parsedData.published_at;
+            tsSpan.style.fontSize = "9px";
+
+            if (parsedData.data == "2") {
+                document.getElementById("leftbtn").innerHTML = "<img src=\"bdown.png\" />";
+                document.getElementById("rightbtn").innerHTML = "<img src=\"bup.png\" />";
+            }
+            else if (parsedData.data == "1") {
+                document.getElementById("leftbtn").innerHTML = "<img src=\"bup.png\" />";
+                document.getElementById("rightbtn").innerHTML = "<img src=\"bdown.png\" />";
+            }
+            else {
+                document.getElementById("leftbtn").innerHTML = "<img src=\"bup.png\" />";
+                document.getElementById("rightbtn").innerHTML = "<img src=\"bup.png\" />";
+            }
+        }, false);
+    }
+    </script>
+</body>
+</html>
